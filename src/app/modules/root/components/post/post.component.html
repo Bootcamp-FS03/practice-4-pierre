@@ -1,0 +1,35 @@
+<mat-card class="post">
+  <div class="">
+    <header class="post__header">
+      <div class="c">
+        <div class="post__avatar">{{ post.author.username[0] }}</div>
+
+        <div class="">
+          <a > {{ post.author.username }}</a>
+          <mat-card-subtitle>
+            {{ post.updatedAt | date }}
+          </mat-card-subtitle>
+        </div>
+      </div>
+      <div *ngIf="(profileService.profile$ | async)?._id === post.author._id">
+        <button mat-icon-button [matMenuTriggerFor]="menu" >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Edit</button>
+          <button mat-menu-item>Delete</button>
+        </mat-menu>
+      </div>
+    </header>
+
+
+  </div>
+
+  <div class="post__content">
+    <p class="post__text">{{ post.text }}</p>
+  </div>
+  <div class="post__actions">
+    <button mat-button (click)="openCommentForm()">Comment</button>
+    <button mat-button (click)="openComments()" >View comments</button>
+  </div>
+</mat-card>

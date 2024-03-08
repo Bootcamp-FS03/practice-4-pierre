@@ -1,0 +1,8 @@
+<div class="f-container">
+  <form [formGroup]="commentForm" (ngSubmit)="postComment()" class="">
+    <mat-form-field>
+      <textarea formControlName="text" matInput placeholder="Write your comment"></textarea>
+    </mat-form-field>
+      <button type="submit" color="primary" mat-button>Comment</button>
+    </form>
+</div>

@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="comment-list" *ngIf="comments && comments.length > 0">
+    <div *ngFor="let comment of comments" class="comment">
+      <div class="author">{{ comment.author.username }}</div>
+      <div class="content">{{ comment.text }}</div>
+    </div>
+  </div>
+  <div *ngIf="comments && comments.length === 0" class="no-comments">
+    No comments available.
+  </div>
+</div>
