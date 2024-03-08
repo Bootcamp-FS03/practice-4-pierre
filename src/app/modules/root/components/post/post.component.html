@@ -28,7 +28,9 @@
 
   <div class="post__content">
     <form [formGroup]="editForm" (ngSubmit)="submitEdit()" class="edit-form" *ngIf="isEdit">
-      <textarea formControlName="text" [defaultValue]="post.text" matInput >{{post.text}}</textarea>
+      <mat-form-field>
+        <textarea formControlName="text" [defaultValue]="post.text" matInput >{{post.text}}</textarea>
+      </mat-form-field>
       <button type="submit" mat-button> Save changes</button>
     </form>
     <p class="post__text" *ngIf="!isEdit">{{ post.text }}</p>
