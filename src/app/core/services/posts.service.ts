@@ -38,7 +38,18 @@ export class PostsService {
       })),
     ).subscribe(posts => {
       this.postsSubject.next(posts);
-      console.log(posts);
     });
+  }
+
+  deletePost(postId:string) :Observable<Post>{
+    return  this.http.delete<Post>(`${this.BASE_URL}${this.POST_URL}/${postId}`).pipe(tap(()=>{
+      this.loadPosts()
+    }))
+  }
+
+  editPost(post:CreatePost,postId:string):Observable<CreatePost>{
+    return this.http.patch<CreatePost>(`${this.BASE_URL}${this.POST_URL}/${postId}`,post).pipe(tap(()=> {
+      this.loadPosts()
+    }))
   }
 }

@@ -18,7 +18,6 @@ export class CommentListComponent implements OnInit{
   }
 
   ngOnInit() {
-    console.log(this.data)
     this.commentService.loadComments(this.data.item._id).subscribe({next:(res)=>{this.comments=res}})
   }
 

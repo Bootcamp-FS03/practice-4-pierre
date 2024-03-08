@@ -1,3 +1,4 @@
+<script src="../comment-form/comment-form.component.ts"></script>
 <mat-card class="post">
   <div class="">
     <header class="post__header">
@@ -16,8 +17,8 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Edit</button>
-          <button mat-menu-item>Delete</button>
+          <button (click)="openEditForm()" mat-menu-item>Edit</button>
+          <button (click)="deletePost()" mat-menu-item>Delete</button>
         </mat-menu>
       </div>
     </header>
@@ -26,7 +27,11 @@
   </div>
 
   <div class="post__content">
-    <p class="post__text">{{ post.text }}</p>
+    <form [formGroup]="editForm" (ngSubmit)="submitEdit()" class="edit-form" *ngIf="isEdit">
+      <textarea formControlName="text" [defaultValue]="post.text" matInput >{{post.text}}</textarea>
+      <button type="submit" mat-button> Save changes</button>
+    </form>
+    <p class="post__text" *ngIf="!isEdit">{{ post.text }}</p>
   </div>
   <div class="post__actions">
     <button mat-button (click)="openCommentForm()">Comment</button>
